@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción ML</title>
+    <style>
+        /* Estilo general */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            color: #444;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Títulos */
+        h1 {
+            font-size: 24px;
+            color: #007acc;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Formulario */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            outline: none;
+        }
+
+        input[type="number"]:focus {
+            border-color: #007acc;
+        }
+
+        /* Botón */
+        button {
+            background: linear-gradient(135deg, #007acc, #005f99);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #005f99, #007acc);
+        }
+
+        /* Caja decorativa */
+        .decorative-box {
+            background: #f3f9ff;
+            border-left: 5px solid #007acc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario de Predicción</h1>
+        <p>Introduce los valores de las características para realizar la predicción.</p>
+        
+        <div class="decorative-box">
+            <p><strong>Nota:</strong> Los valores deben ser números válidos. Usa 1, 2 o 3 para la clase y otros valores según corresponda.</p>
+        </div>
+
+        <form action="/predict" method="POST">
+            <div>
+                <label for="feature1">Feature 1 (Clase):</label>
+                <input type="number" id="feature1" name="feature1" required>
+            </div>
+            <div>
+                <label for="feature2">Feature 2 (Sexo):</label>
+                <input type="number" id="feature2" name="feature2" required>
+            </div>
+            <div>
+                <label for="feature3">Feature 3 (Edad):</label>
+                <input type="number" id="feature3" name="feature3" required>
+            </div>
+            <button type="submit">Predecir</button>
+        </form>
+    </div>
+</body>
+</html>
