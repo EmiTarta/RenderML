@@ -53,12 +53,12 @@ def predict():
     # Subir la prediccion
     logs.to_sql("predictions", con=engine, if_exists='append', index=False)
 
-    ### Generamos la gráfica
+    # ### Generamos la gráfica
     read_predictions = pd.read_sql("SELECT * FROM predictions", con=engine)
     fig = plt.figure()
-    read_predictions.prediction.value_counts().plot(kind="bar")
-    plt.title("Predicciones totales")
-    
+    read_predictions.prediction.value_counts().plot(kind="bar", color="#012944")
+    plt.title("Sobrevivientes (1: sobrevivió, 0: no lo ha logrado)")
+
     # Guardar la gráfica en un buffer en memoria
     buffer = BytesIO()
     plt.savefig(buffer, format='png')

@@ -4,88 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado</title>
-    <style>
-        /* Estilo general */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #acb6e5);
-            color: #444;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Contenedor principal */
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-        }
-
-        /* Títulos */
-        h1 {
-            font-size: 24px;
-            color: #007acc;
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: 20px;
-            color: #555;
-            margin-top: 30px;
-        }
-
-        p {
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        /* Imagen */
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
-        /* Botón de retorno */
-        a {
-            display: inline-block;
-            margin-top: 30px;
-            background: linear-gradient(135deg, #007acc, #005f99);
-            color: white;
-            text-decoration: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-        }
-
-        a:hover {
-            background: linear-gradient(135deg, #005f99, #007acc);
-        }
-    </style>
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Resultado de la Predicción</h1>
-        <p>La clase predicha es: <strong>{{ prediction }}</strong></p>
-        <h1>Explicación de Gemini</h1>
+        <p>La predicción es: <strong>{{ prediction }}</strong></p>
+        <h1>Dedicamos unas palabras</h1>
         <p>{{ generacion }}</p>
         <h2>Gráfico de Predicciones</h2>
-        <img src="data:image/png;base64,{{ grafica }}" alt="Gráfico de Predicciones">
+        <div class="img-container">
+            <img src="data:image/png;base64,{{ grafica }}" alt="Gráfico de Sobrevivientes">
+        </div>
         
-        <a href="/">Volver al formulario</a>
+        <a href="/">Vuelve a averiguar por alguien</a>
     </div>
 </body>
 </html>

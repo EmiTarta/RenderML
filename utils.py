@@ -7,7 +7,8 @@ def get_prompt(inputs, outputs):
     prompt = f"""Hola gemini! estoy haciendo una API de prediccion de supervivencia o no con el dataset del titanic.
     He usado 3 features: Pclass, Age y Sex. Lo que necesito es pasarte los iputs y la prediccion del modelo,
     y que me generes un texto especuladno, a traves de los inputs dados y la prediccion del modelo,los motivos por los cuales el modelo ha hecho esa prediccion
-    y si tiene sentido o no la misma, dado el contexto. Quiero que lo escribas de forma muy narrada, como si fuera una historia de aventuras.
+    y si tiene sentido o no la misma, dado el contexto. Quiero que lo escribas dando las condolencias y el más sentido pésame, si no ha sobrevivido, de una forma muy sentida; 
+    si ha sobrevivido, felicítale con "bombos y platillas", con "corona de laureles" dile lo bonito que es estar vivo.  
     Pero quero un texto conciso, entre 100 y 500 palabras maximo.
     Se creativo, mojate.
     Importante 1: el formato de salida ha de ser UNICA Y EXCLUSIVAMENTE el texto narrado. No me des saludos, metadatos, ni nada,
