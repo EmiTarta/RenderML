@@ -10,7 +10,8 @@ import base64
 from io import BytesIO
 from dotenv import load_dotenv
 import os
-
+import google.generativeai as genai
+from utils import get_prompt, generar_texto
 load_dotenv()
 
 app = Flask(__name__)
@@ -34,11 +35,13 @@ def predict():
     pclass = int(request.form.get('feature1'))
     sex = int(request.form.get('feature2'))
     age = int(request.form.get('feature3'))
-
+    inputs = pclass, sex, age
+    
     # Se podria hacer asi (en conjunto): inputs = [int(x) for x in request.form.values()]
     # AHORA IRIA LA NORMALIZACION, SI NORMALICE
     # Realizar predicción con el modelo
     prediction = model.predict([[pclass, sex, age]])
+    output = prediction[0]
     # Guardar en la base de datos
     timestamp = datetime.datetime.now().isoformat()
     logs = pd.DataFrame({"pclass": [pclass],
@@ -56,16 +59,21 @@ def predict():
     read_predictions.prediction.value_counts().plot(kind="bar")
     plt.title("Predicciones totales")
     
-        # Guardar la gráfica en un buffer en memoria
+    # Guardar la gráfica en un buffer en memoria
     buffer = BytesIO()
     plt.savefig(buffer, format='png')
     buffer.seek(0)
     plt.close(fig)
     img_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    
+    # Generar texto IA
+    genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+    modelo = genai.GenerativeModel('gemini-2.0-flash-exp')
+    prompt = get_prompt(inputs, output)
+    generacion = generar_texto(modelo, prompt)
 
         # Devolver el resultado y la imagen (grafica) como respuesta
-    return render_template("result.html", prediction=int(prediction[0]), grafica=img_base64)
-
+    return render_template("result.html", prediction=int(prediction[0]), grafica=img_base64, generacion=generacion)
 
 
 @app.route('/records', methods=['GET'])
