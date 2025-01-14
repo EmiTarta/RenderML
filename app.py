@@ -8,13 +8,17 @@ from sqlalchemy import create_engine
 import json
 import base64
 from io import BytesIO
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 
 # Cargar el modelo
 model = joblib.load("titanic_model.joblib")
 
-conexion = "postgresql://postgres:myinstance@35.241.183.250:5432/predictions"
+conexion = os.environ["CONEXION"]
 engine = create_engine(conexion)
 
 @app.route('/', methods=['GET'])
